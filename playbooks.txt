@@ -1,0 +1,52 @@
+
+1 Install tomcat8 on all managed nodes
+  ansible all -m apt -a 'name=tomcat8 state=present update_cache=yes' 
+
+2 Change port of tomcat from 8080 to 9090
+  ansible all -m replace -a 'regexp=8080 replace=9090 
+                                     path=/etc/tomcat8/server.xml' -b
+
+
+3 Restart tomcat8
+  ansible all -m service -a 'name=tomcat8 state=restarted' -b
+
+4 Check the url reponse of tomcat on all managed nodes
+  ansible all -m uri -a 'url=http://172.31.35.219:9090 status=200'
+  ansible all -m uri -a 'url=http://172.31.36.247:9090 status=200'
+  ansible all -m uri -a 'url=http://172.31.39.177:9090 status=200'
+
+
+
+
+
+
+--extra-vars
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
